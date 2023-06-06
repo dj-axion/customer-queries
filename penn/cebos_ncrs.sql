@@ -5,15 +5,15 @@ SELECT
 	st.Name as "Current State",
 	ps.DisplayExpression_f as "Problem Symptom",
 	IIF(ncr.EscalatetoSCAR_f = 1, 'TRUE', 'FALSE') as "Escalate to SCAR",
-    initby.DisplayExpression_f as "Initiated By",
-    champ.DisplayExpression_f as Champion,
-    ncat.Category_f as Category,--Category
-    item.DisplayExpression_f as "Failed Item",--Failed Item
-    cust.DisplayExpression_f as Customer,--Customer
-    site.DisplayExpression_f as Site,--Site
-    rsite.DisplayExpression_f as "Responsible Site",--Responsible Site
-    psrc.DisplayExpression_f as "Problem Source",--Problem Source
-    supp.DisplayExpression_f as Supplier,--Supplier
+    	initby.DisplayExpression_f as "Initiated By",
+    	champ.DisplayExpression_f as Champion,
+    	ncat.Category_f as Category,--Category
+    	item.DisplayExpression_f as "Failed Item",--Failed Item
+    	cust.DisplayExpression_f as Customer,--Customer
+    	site.DisplayExpression_f as Site,--Site
+    	rsite.DisplayExpression_f as "Responsible Site",--Responsible Site
+    	psrc.DisplayExpression_f as "Problem Source",--Problem Source
+    	supp.DisplayExpression_f as Supplier,--Supplier
 	pdis.DisplayExpression_f as "Problem Disposition",--Problem Diposition
 	ncr.DispositionNotes_f as "Disposition Notes",--Disposition Notes
 	psev.DisplayExpression_f as "Problem Severity",--Problem Severity
@@ -64,9 +64,9 @@ LEFT JOIN Processes_p as prcs
 LEFT JOIN Nonconformances_xp as xp
 	ON ncr.Id = xp.Id
 WHERE
-	ncr.NonconformanceNumber_f <= 28801
-	--AND ncr.NonconformanceNumber_f > 30322
-	ncr.InitiatedDate_f >= '2022-12-01' --when cleared w/ Paula, change to L30
+	--ncr.NonconformanceNumber_f <= 30494
+	ncr.NonconformanceNumber_f > 30494
+	AND ncr.InitiatedDate_f >= '2022-12-01' --when cleared w/ Paula, change to L30
 	AND ncr.Site_f IN (408, 405, 403, 402, 401, 398, 395, 
 						393, 390, 389, 388, 386, 384, 382, 
 						379, 378, 377, 371, 367, 364, 362)
