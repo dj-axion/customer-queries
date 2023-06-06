@@ -1,14 +1,3 @@
-"""
-SQL to pull customer data from the CEBOS databases
-Accessible from AWS workspaces
-SSMS -> 172.16.123.18
-    -> Databases
-        -> EQMSRT
-            -> New Query
-stored for posterity (doesn't work standalone)
-watch the double-underscores __
-"""
-
 SELECT
 	ncr.NonconformanceNumber_f as "Non-conformance Number",
 	ncr.InitiatedDate_f as "Initiated Date",
@@ -75,10 +64,10 @@ LEFT JOIN Processes_p as prcs
 LEFT JOIN Nonconformances_xp as xp
 	ON ncr.Id = xp.Id
 WHERE
+	ncr.NonconformanceNumber_f <= 28801
+	--AND ncr.NonconformanceNumber_f > 30322
 	ncr.InitiatedDate_f >= '2022-12-01' --when cleared w/ Paula, change to L30
 	AND ncr.Site_f IN (408, 405, 403, 402, 401, 398, 395, 
-						393, 390, 389, 388, 386, 384, 382, 381, 
+						393, 390, 389, 388, 386, 384, 382, 
 						379, 378, 377, 371, 367, 364, 362)
-	AND ncr.NonconformanceNumber_f > 30322
-	--AND ncr.NonconformanceNumber_f <= 30322
 ORDER BY ncr.NonconformanceNumber_f DESC
